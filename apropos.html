@@ -18,21 +18,24 @@
   </style>
 </head>
 <body class="page-transition bg-neutral-50 text-black">
-<header class="sticky top-0 z-50 bg-neutral-50 p-6 border-b border-black">
-  <div class="flex justify-between items-center">
+
+<header class="sticky top-0 z-30 bg-neutral-50 p-6 border-b border-black">
+  <div class="flex items-center justify-between w-full">
     <a href="index.html"><img src="logo.png" alt="Logo" class="h-16 w-auto"></a>
-    <button id="menu-btn" class="lg:hidden text-black focus:outline-none" aria-label="Menu">
-      <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
-    </button>
-    <nav id="menu" class="hidden lg:flex gap-8 text-xl font-bold">
-      <a href="galerie.html">Galerie</a>
-      <a href="apropos.html">À propos</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+    <button id="open-menu" class="lg:hidden text-black text-3xl ml-auto">☰</button>
   </div>
 </header>
+<!-- Menu mobile slide -->
+<div id="mobile-slide" class="fixed top-0 right-[-100%] h-full w-64 bg-neutral-100 z-50 p-6 transition-all duration-500 shadow-lg">
+  <button id="close-menu" class="text-black mb-6 text-2xl">✕</button>
+  <nav class="flex flex-col gap-4 text-xl font-bold">
+    <a href="index.html">Accueil</a>
+    <a href="galerie.html">Galerie</a>
+    <a href="apropos.html">À propos</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</div>
+
 
 <section class="px-6 py-20 bg-white border-t border-b border-black">
   <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
@@ -45,7 +48,7 @@
           Mon parcours m’a conduit à explorer les ruelles sombres comme les gratte-ciels lumineux, en quête de compositions saisissantes et de détails oubliés. Ce portfolio est une invitation à ressentir la ville autrement.
     </div>
     <div>
-      <img src="Portrait.jpg" alt="Portrait" class="rounded-2xl shadow-xl w-full object-cover">
+      <img src="portrait.jpg" alt="Portrait" class="rounded-2xl shadow-xl w-full object-cover">
     </div>
   </div>
 </section>
@@ -53,13 +56,19 @@
 <footer class="p-4 text-center text-sm text-gray-500 border-t border-black">
   © 2025 Alexandre Bobet. Tous droits réservés.
 </footer>
+
 <script>
+document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('contextmenu', e => e.preventDefault());
-  const menuBtn = document.getElementById('menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  menuBtn?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
-  });
+  const openBtn = document.getElementById('open-menu');
+  const closeBtn = document.getElementById('close-menu');
+  const menu = document.getElementById('mobile-slide');
+  if (openBtn && closeBtn && menu) {
+    openBtn.addEventListener('click', () => { menu.style.right = '0'; });
+    closeBtn.addEventListener('click', () => { menu.style.right = '-100%'; });
+  }
+});
 </script>
+
 </body>
 </html>
